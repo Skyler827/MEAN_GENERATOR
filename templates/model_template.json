@@ -1,0 +1,29 @@
+[
+    {
+        "tableName":"Quotes",
+        "schemaName":"QuoteSchema",
+        "attributes": {
+            "quote":{
+                "type":"String",
+                "required":true,
+                "minLength":10
+            },
+            "author": {
+                "type":"String",
+                "required":true
+            },
+            "timestamps": true
+        }
+    }, {
+        "tableName":"Users",
+        "schemaName":"UsersSchema",
+        "attributes": {
+            "username": {
+                "type":"String"
+            },
+            "password": {
+                "type":"String"
+            }
+        }
+    }
+]
