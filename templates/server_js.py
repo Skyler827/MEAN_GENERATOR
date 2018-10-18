@@ -1,3 +1,5 @@
+def server_js():
+    return '''
 let express = require('express');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
@@ -7,12 +9,6 @@ const flash = require('express-flash');
 const app = express();
 const PORT = 8000;
 const db = mongoose.connection;
-const UserSchema = new mongoose.Schema({
-    first_name: {type: String, required: true, minlength: 6},
-    last_name: {type: String, required: true, maxlength:20},
-    age: {type: Number, min: 1, max: 150},
-    email: {type: String, required: true}
-}, {timestamps: true});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, './static')));
@@ -37,3 +33,4 @@ app.get('/', function(req, res) {
 app.listen(PORT, function() {
     console.log(\"listening on port \"+PORT);
 })
+'''

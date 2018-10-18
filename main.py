@@ -1,11 +1,17 @@
+#!/usr/bin/python3
 import sys
 import os
 import subprocess
 import shutil
+from templates import package_json
+from snippets import splitall
 ##### STEP 0: MAKE SURE WE ARE READY TO GO #####
 def testCommands():
+    if not shutil.which("npm"):
+        print("Error: npm is not installed")
+        print("Install npm with homebrew on Mac, or with chocolatey on Windows, or with apt/yum/dnf/pacman/emerge/zypper on Linux")
     if not shutil.which("ng"):
-        print("ng command is missing")
+        print("Error: ng command is missing")
         print("make sure you've installed angular cli tools with `npm install -g @angular/cli`")
         exit(1)
 ##### STEP 1: INITIALIZE DIRECTORY #####
@@ -23,6 +29,7 @@ def initializeDirectory():
         shutil.rmtree(arg_path)
     os.makedirs(arg_path)
     os.chdir(arg_path)
+    print(package_json.package_json(splitall.splitall(arg_path)[-1]))
 
 ##### STEP TWO: INITIALIZE PROJECT BACKEND #####
 def initializeBackend():
@@ -36,6 +43,7 @@ def initializeBackend():
             "server.js": "templates/server.js_"
         }
     }
+    print(directories)
     # run npm init -y in the server directory
     # run npm install this that whatever
 
